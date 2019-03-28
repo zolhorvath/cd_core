@@ -1,0 +1,6 @@
+name: 'Clarodist Core'
+type: module
+description: 'Contains core components of the Clarodist that cannot be shipped by a Drupal profile or are too general'
+core: 8.x
+package: Claro
+dependencies: {  }

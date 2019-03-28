@@ -1,0 +1,13 @@
+langcode: en
+type: cd
+dependencies:
+  enforced:
+    module:
+      - cd_node
+name: 'Test node'
+description: 'Test node type for Claro development'
+help: ''
+new_revision: true
+display_submitted: false
+preview_mode: 1
+status: true

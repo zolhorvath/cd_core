@@ -1,0 +1,24 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.cd.body
+    - node.type.cd
+  module:
+    - text
+    - user
+id: node.cd.default
+targetEntityType: node
+bundle: cd
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  langcode: true
+  links: true

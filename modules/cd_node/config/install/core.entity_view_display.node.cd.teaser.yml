@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.cd.body
+    - node.type.cd
+  module:
+    - user
+id: node.cd.teaser
+targetEntityType: node
+bundle: cd
+mode: teaser
+content: {  }
+hidden:
+  body: true
+  langcode: true
+  links: true

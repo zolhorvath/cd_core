@@ -1,0 +1,7 @@
+name: Textfixtures
+type: module
+description: 'Defines a field types for color, password and search.'
+package: Claro
+core: 8.x
+dependencies:
+  - drupal:field

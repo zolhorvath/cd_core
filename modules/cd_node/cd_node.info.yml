@@ -1,0 +1,9 @@
+name: 'Claro test node'
+type: module
+description: 'Test node for claro development helper modules'
+core: 8.x
+package: Claro
+claro_test: false
+dependencies:
+  - drupal:node
+  - drupal:path

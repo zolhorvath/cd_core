@@ -1,0 +1,14 @@
+{
+    "name": "zolhorvath/cd_core",
+    "description": "Contains core components of the Clarodist that cannot be shipped by a Drupal profile or are too general",
+    "type": "drupal-module",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Zoltan Horvath",
+            "email": "z.a.horvath@gmail.com",
+            "role": "Maintainer"
+        }
+    ],
+    "require": {}
+}

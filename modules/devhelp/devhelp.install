@@ -1,0 +1,67 @@
+<?php
+
+/**
+ * @file
+ * Contains install hooks for Developer helper module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function devhelp_install() {
+  $modules_available = \Drupal::service('extension.list.module')->reset()->getList();
+  $module_handler = \Drupal::moduleHandler();
+  $kint_initial_status = $kint_status = $module_handler->moduleExists('kint');
+
+  if (
+    in_array('kint', array_keys($modules_available))
+    && !$module_handler->moduleExists('kint')
+  ) {
+    $kint_status = TRUE;
+    \Drupal::service('module_installer')->install(['kint']);
+  }
+
+  if ($kint_status && !$kint_initial_status) {
+    $perms = _devhelp_permissions();
+    $roles = \Drupal::entityTypeManager()->getStorage('user_role')->loadMultiple();
+
+    foreach (array_keys($roles) as $role_id) {
+      user_role_grant_permissions($role_id, $perms);
+    }
+  }
+
+  \Drupal::state()->set('devhelp.kint_was_enabled', $kint_initial_status);
+}
+
+/**
+ * Implements hook_install().
+ */
+function devhelp_uninstall() {
+  $state = \Drupal::state();
+
+  if (
+    !($state->get('devhelp.kint_was_enabled', TRUE))
+  ) {
+    $perms = _devhelp_permissions();
+    $roles = \Drupal::entityTypeManager()->getStorage('user_role')->loadMultiple();
+
+    foreach (array_keys($roles) as $role_id) {
+      user_role_revoke_permissions($role_id, $perms);
+    }
+
+    if (\Drupal::moduleHandler()->moduleExists('kint')) {
+      \Drupal::service('module_installer')->uninstall(['kint']);
+    }
+  }
+
+  $state->delete('devhelp.kint_was_enabled');
+}
+
+/**
+ * Provides list of permissions to grant/revoke.
+ */
+function _devhelp_permissions() {
+  return [
+    'access kint',
+  ];
+}

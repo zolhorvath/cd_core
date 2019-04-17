@@ -10,5 +10,8 @@
             "role": "Maintainer"
         }
     ],
-    "require": {}
+    "require": {},
+    "require-dev": {
+      "drupal/devel": "^2.0"
+    }
 }

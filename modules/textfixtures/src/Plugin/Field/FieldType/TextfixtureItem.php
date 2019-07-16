@@ -7,6 +7,7 @@ use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldItemBase;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\TypedData\DataDefinition;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 
 /**
  * Plugin implementation of the 'textfixture' field type.
@@ -21,6 +22,8 @@ use Drupal\Core\TypedData\DataDefinition;
  * )
  */
 class TextfixtureItem extends FieldItemBase {
+
+  use StringTranslationTrait;
 
   /**
    * {@inheritdoc}
@@ -67,7 +70,7 @@ class TextfixtureItem extends FieldItemBase {
       'value' => [
         'Length' => [
           'max' => $max_length,
-          'maxMessage' => t('%name: the value may not be longer than @max characters.', ['%name' => $this->getFieldDefinition()->getLabel(), '@max' => $max_length]),
+          'maxMessage' => $this->t('%name: the value may not be longer than @max characters.', ['%name' => $this->getFieldDefinition()->getLabel(), '@max' => $max_length]),
         ],
       ],
     ]);

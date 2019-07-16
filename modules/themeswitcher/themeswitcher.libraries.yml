@@ -1,0 +1,9 @@
+form:
+  css:
+    theme:
+      css/themeswitcher.theme.css: {}
+  js:
+    js/themeswitcher.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery.once

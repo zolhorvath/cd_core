@@ -1,0 +1,28 @@
+<?php
+
+/**
+ * @file
+ * Contains install and update functions for Theme Switcher module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function themeswitcher_install() {
+  $roles = \Drupal::entityTypeManager()->getStorage('user_role')->loadMultiple();
+
+  foreach (array_keys($roles) as $role_id) {
+    user_role_grant_permissions($role_id, ['choose preferred theme']);
+  }
+}
+
+/**
+ * Implements hook_install().
+ */
+function themeswitcher_uninstall() {
+  $roles = \Drupal::entityTypeManager()->getStorage('user_role')->loadMultiple();
+
+  foreach (array_keys($roles) as $role_id) {
+    user_role_revoke_permissions($role_id, ['choose preferred theme']);
+  }
+}

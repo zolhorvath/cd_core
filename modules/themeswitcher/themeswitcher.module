@@ -12,5 +12,4 @@
  */
 function themeswitcher_page_bottom(&$page_bottom) {
   $page_bottom['themeswitcher'] = \Drupal::formBuilder()->getForm('Drupal\themeswitcher\Form\ThemeSwitcherForm');
-  $page_bottom['#access'] = \Drupal::currentUser()->hasPermission('choose preferred theme');
 }

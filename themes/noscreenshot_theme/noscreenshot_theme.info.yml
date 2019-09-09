@@ -1,0 +1,5 @@
+name: 'No Screenshot theme'
+type: theme
+description: 'A theme without a screenshot'
+version: 8.x-1.0.0
+core: 8.x

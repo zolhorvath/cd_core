@@ -1,0 +1,6 @@
+name: 'Incompatible theme'
+type: theme
+base theme: classy
+description: 'Test theme which has an incompatible core version.'
+version: 7.x-0.9.0
+core: 7.x

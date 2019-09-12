@@ -25,14 +25,17 @@
     var options = {
       0: {
         label: Drupal.t("All"),
+        option: "all",
         active: null
       },
       1: {
         label: Drupal.t("Odd"),
+        option: "odd",
         active: "show-odd"
       },
       2: {
         label: Drupal.t("Even"),
+        option: "even",
         active: "show-even"
       }
     };
@@ -76,6 +79,7 @@
       $("<a>", {
         text: options[key].label,
         class: "sbs-menu__item" + (active ? " active" : ""),
+        "data-option": options[key].option,
         role: "button",
         href: "#"
       })

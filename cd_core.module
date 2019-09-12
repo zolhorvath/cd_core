@@ -9,6 +9,16 @@ use Drupal\Core\Render\Element;
 use Drupal\Component\Utility\Html;
 
 /**
+ * Implements hook_entity_type_alter().
+ */
+function cd_core_entity_type_alter(array &$entity_types) {
+  /* @var $entity_types \Drupal\Core\Entity\EntityTypeInterface[] */
+  if (isset($entity_types['contact_form'])) {
+    $entity_types['contact_form']->setHandlerClass('access', '\Drupal\cd_core\ContactFormAccessControlHandler');
+  }
+}
+
+/**
  * Prepares variables for the side_by_side layout template.
  *
  * Default template: layout--side-by-side.html.twig.

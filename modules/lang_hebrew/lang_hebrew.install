@@ -1,0 +1,28 @@
+<?php
+
+/**
+ * @file
+ * Contains install and update functions for Hebrew language module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function lang_hebrew_install() {
+  // Add language switcher block instances.
+  _lang_hebrew_add_interface_language_switcher_blocks(array_keys(\Drupal::service('theme_handler')->listInfo()));
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function lang_hebrew_uninstall() {
+  // Delete language switcher block instances.
+  $block_instances = \Drupal::service('entity_type.manager')->getStorage('block')->loadMultiple();
+
+  foreach ($block_instances as $block_id => $block) {
+    if (strpos($block_id, '_language_switcher_cd_core')) {
+      $block->delete();
+    }
+  }
+}

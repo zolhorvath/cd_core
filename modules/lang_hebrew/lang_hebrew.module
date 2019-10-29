@@ -1,0 +1,62 @@
+<?php
+
+/**
+ * @file
+ * Contains code for Hebrew language module.
+ */
+
+use Drupal\block\Entity\Block;
+
+/**
+ * Implements hook_themes_installed().
+ */
+function lang_hebrew_themes_installed($theme_list) {
+  _lang_hebrew_add_interface_language_switcher_blocks($theme_list);
+}
+
+/**
+ * Helper callback for adding language switcher blocks to the specified themes.
+ *
+ * @param string[] $themes
+ *   An array of the themes machine name where the language switcher block has
+ *   to be added.
+ */
+function _lang_hebrew_add_interface_language_switcher_blocks(array $themes) {
+  if (\Drupal::service('plugin.manager.block')->hasDefinition('language_block:language_interface')) {
+    $block_values_default = _lang_hebrew_block_plugin_defaults();
+
+    foreach ($themes as $theme_name) {
+      $values = $block_values_default + [
+        'id' => $theme_name . '_language_switcher_cd_core',
+        'theme' => $theme_name,
+      ];
+
+      try {
+        $block = Block::create($values);
+        $block->save();
+      }
+      catch (\Exception $e) {
+      }
+    }
+  }
+}
+
+/**
+ * Provides value sceleton for creating interface language switcher blocks.
+ *
+ * @return array
+ *   An array of block plugin values without specified block plugin id or theme
+ *   keys.
+ */
+function _lang_hebrew_block_plugin_defaults() {
+  return [
+    'plugin' => 'language_block:language_interface',
+    'region' => 'content',
+    'status' => 1,
+    'weight' => 100,
+    'settings' => [
+      'id' => 'language_block:language_interface',
+      'label_display' => '0',
+    ],
+  ];
+}

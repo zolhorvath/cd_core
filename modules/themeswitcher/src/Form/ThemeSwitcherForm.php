@@ -6,7 +6,6 @@ use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Extension\ThemeHandlerInterface;
-use Drupal\Core\Extension\Extension;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Drupal\Core\PageCache\ResponsePolicy\KillSwitch;
 use Drupal\Core\Session\AccountInterface;
@@ -70,18 +69,8 @@ class ThemeSwitcherForm extends FormBase {
     $this->currentUser = $current_user;
     $this->currentTheme = $request_stack->getCurrentRequest()->cookies->get('themeswitcher', NULL);
 
-    // Get available non-hidden themes.
-    $themes_visible = array_filter($this->themeHandler->listInfo(), function (Extension $theme) {
-      return empty($theme->info['hidden']);
-    });
-    $themes_available = array_filter(array_keys($themes_visible), function ($theme_name) {
-      return $this->themeHandler->hasUi($theme_name);
-    });
-
-    $options = [];
-
-    foreach ($themes_available as $theme_name) {
-      $options[$theme_name] = $themes_visible[$theme_name]->info['name'];
+    foreach ($this->themeHandler->listInfo() as $theme_name => $theme) {
+      $options[$theme_name] = $theme->info['name'];
     }
 
     $this->availableThemes = $options;

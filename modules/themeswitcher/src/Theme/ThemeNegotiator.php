@@ -6,7 +6,6 @@ use Drupal\Core\Extension\ThemeHandlerInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Theme\ThemeNegotiatorInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Drupal\Core\Extension\Extension;
 use Drupal\Core\Session\AccountInterface;
 
 /**
@@ -75,13 +74,8 @@ class ThemeNegotiator implements ThemeNegotiatorInterface {
    *   Returns the active theme name, else return NULL.
    */
   public function determineActiveTheme(RouteMatchInterface $route_match) {
-    // Get available non-hidden themes.
-    $themes_visible = array_filter($this->themeHandler->listInfo(), function (Extension $theme) {
-      return empty($theme->info['hidden']);
-    });
-    $themes_available = array_filter(array_keys($themes_visible), function ($theme_name) {
-      return $this->themeHandler->hasUi($theme_name);
-    });
+    // Get available themes.
+    $themes_available = array_keys($this->themeHandler->listInfo());
 
     return in_array($this->themeName, $themes_available) ? $this->themeName : NULL;
   }

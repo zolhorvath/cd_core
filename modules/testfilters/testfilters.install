@@ -1,0 +1,38 @@
+<?php
+
+/**
+ * @file
+ * Contains install and uninstall functions for test filters module.
+ */
+
+use Drupal\user\RoleInterface;
+
+/**
+ * Implements hook_install().
+ */
+function testfilters_install() {
+  $perms = _testfilters_permissions();
+
+  user_role_grant_permissions(RoleInterface::ANONYMOUS_ID, $perms);
+  user_role_grant_permissions(RoleInterface::AUTHENTICATED_ID, $perms);
+}
+
+/**
+ * Implements hook_install().
+ */
+function testfilters_uninstall() {
+  $perms = _testfilters_permissions();
+
+  user_role_revoke_permissions(RoleInterface::ANONYMOUS_ID, $perms);
+  user_role_revoke_permissions(RoleInterface::AUTHENTICATED_ID, $perms);
+}
+
+/**
+ * Provides list of the needed permissions.
+ */
+function _testfilters_permissions() {
+  return [
+    'use text format cd_basic_html',
+    'use text format cd_no_editor',
+  ];
+}

@@ -1,0 +1,7 @@
+name: 'Test filters'
+type: module
+description: 'Demo text filters and editors.'
+package: Claro
+core: 8.x
+dependencies:
+  - drupal:ckeditor

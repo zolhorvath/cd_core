@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - testfilters
+name: 'No editor'
+format: cd_no_editor
+weight: 0
+filters:
+  filter_autop:
+    id: filter_autop
+    provider: filter
+    status: true
+    weight: 0
+    settings: {  }
+  filter_htmlcorrector:
+    id: filter_htmlcorrector
+    provider: filter
+    status: true
+    weight: 10
+    settings: {  }
+  filter_html_escape:
+    id: filter_html_escape
+    provider: filter
+    status: true
+    weight: -10
+    settings: {  }

@@ -1,0 +1,53 @@
+/**
+ * @file
+ * Pointer tracker crosshair styles.
+ */
+
+#pt-crosshair {
+  position: fixed;
+  transform: rotate(45deg);
+  margin: -12px -11px;
+  pointer-events: none;
+  width: 21px;
+  height: 21px;
+  border-radius: 21px;
+  z-index: 1501;
+  color: #000;
+}
+#pt-crosshair:not([style*='left:']) {
+  visibility: hidden;
+}
+
+@media (pointer: coarse) {
+  #pt-crosshair {
+    transform: scale(2) rotate(45deg);
+  }
+}
+
+#pt-crosshair::before {
+  content: "";
+  width: 30px;
+  position: absolute;
+  height: 0;
+  top: 50%;
+  left: 50%;
+  border-top: 1px solid;
+  transform: translateX(-50%);
+  box-shadow: 1px 1px 0 #fff, -1px -1px 0 #fff, -1px 1px 0 #fff, 1px -1px 0 #fff, -1px 0 #fff, 1px 0 #fff;
+}
+
+#pt-crosshair::after {
+  content: "";
+  height: 30px;
+  position: absolute;
+  width: 0;
+  top: 50%;
+  left: 50%;
+  border-left: 1px solid;
+  transform: translateY(-50%);
+  box-shadow: 1px 1px 0 #fff, -1px -1px 0 #fff, -1px 1px 0 #fff, 1px -1px 0 #fff, 0 -1px #fff, 0 1px #fff;
+}
+
+#pt-crosshair.pointerdown {
+  background: rgba(0,127,255, 0.3);
+}

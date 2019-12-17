@@ -1,0 +1,9 @@
+crosshair:
+  css:
+    component:
+      css/pointertracker.css: {}
+  js:
+    js/pointertracker.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery.once

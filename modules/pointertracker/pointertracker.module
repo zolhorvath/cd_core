@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file
+ * Code for Pointer Tracker module.
+ */
+
+/**
+ * Implements hook_page_attachments().
+ */
+function pointertracker_page_attachments(array &$attachments) {
+  $attachments['#attached']['library'][] = 'pointertracker/crosshair';
+}

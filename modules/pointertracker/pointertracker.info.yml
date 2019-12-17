@@ -1,0 +1,6 @@
+name: 'Pointer tracker'
+type: module
+description: 'A crosshair that tracks the pointer'
+package: Claro
+core: 8.x
+dependencies: {  }

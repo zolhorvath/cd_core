@@ -14,6 +14,7 @@
   border-radius: 0.5rem 0.5rem 0 0;
   text-align: center;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  position: 1100;
 }
 
 .themeswitcher-form label,

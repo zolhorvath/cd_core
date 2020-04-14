@@ -7,3 +7,4 @@ claro_test: false
 dependencies:
   - drupal:node
   - drupal:path
+core_version_requirement: ^8 || ^9

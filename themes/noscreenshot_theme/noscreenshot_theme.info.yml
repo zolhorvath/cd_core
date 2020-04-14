@@ -3,3 +3,4 @@ type: theme
 description: 'A theme without a screenshot'
 core: 8.x
 base theme: stable
+core_version_requirement: ^8 || ^9

@@ -4,3 +4,4 @@ description: 'Contains core components of the Clarodist that cannot be shipped b
 core: 8.x
 package: Claro
 dependencies: {  }
+core_version_requirement: ^8 || ^9

@@ -7,3 +7,4 @@ dependencies:
   - drupal:block
   - drupal:language
   - drupal:locale
+core_version_requirement: ^8 || ^9

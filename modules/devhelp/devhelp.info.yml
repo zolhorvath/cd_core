@@ -4,3 +4,4 @@ type: module
 core: 8.x
 package: Claro
 dependencies: {  }
+core_version_requirement: ^8 || ^9

@@ -26,22 +26,15 @@ function cd_core_entity_type_alter(array &$entity_types) {
  * See the layout--side-by-side.html.twig template for the list of variables.
  */
 function template_preprocess_layout__side_by_side(&$variables) {
-  $variables['content']['main']['#pre_render'][] = '_cd_core_prerender_sbs';
-}
+  $variables['content']['main']['#pre_render'][] = function($region) {
+    foreach (Element::children($region) as $item_key) {
+      $region[$item_key]['#theme_wrappers']['container__sbs_item'] = [
+        '#attributes' => ['data-region' => $region[$item_key]['#group'] ?? 'main'],
+      ];
+    }
 
-/**
- * Prerender callback for side by side layout.
- *
- * Wraps each children of the region in a container.
- */
-function _cd_core_prerender_sbs($region) {
-  foreach (Element::children($region) as $item_key) {
-    $region[$item_key]['#theme_wrappers']['container__sbs_item'] = [
-      '#attributes' => ['data-region' => $region[$item_key]['#group'] ?? 'main'],
-    ];
-  }
-
-  return $region;
+    return $region;
+  };
 }
 
 /**
